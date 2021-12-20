@@ -1,6 +1,7 @@
 set dotenv-load := true
 alias r := reset
 alias o := open
+alias c := commit
 
 default: publish
 
@@ -18,3 +19,8 @@ publish: && push
 
 @open:
     open out/index.html -a Safari
+
+@commit:
+    git rm -r --cached "Writeup.ulysses"
+    git add "Writeup.ulysses"
+    git commit -am "Ulysses doc update"
