@@ -3,7 +3,7 @@ alias r := reset
 alias o := open
 alias c := commit
 
-default: publish
+default: publish commit
     
 publish:
     cd $PAGE git rm -r covid # Remove everything to ger rid of unused media
