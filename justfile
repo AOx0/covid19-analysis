@@ -1,5 +1,6 @@
 set dotenv-load := true
 alias r := reset
+alias o := open
 
 default: publish
 
@@ -14,3 +15,6 @@ publish: && push
 @reset:
     rm -rf out
     mkdir out
+
+@open:
+    open out/index.html -a Safari
