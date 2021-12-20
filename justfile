@@ -2,19 +2,16 @@ set dotenv-load := true
 alias r := reset
 alias o := open
 alias c := commit
-alias p := push
 
 default: publish
+    
+publish:
+    cd $PAGE git rm -r covid # Remove everything to ger rid of unused media
+    cp -rf out $PAGE/covid
+    cd $PAGE && git add covid
 
-push:
-    cd $PAGE && git rm -r --cached "covid" # Remove everything to ger rid of unused media
-    cd $PAGE && git add "covid"
     cd $PAGE && git commit -am "Updated covid"
     cd $PAGE && git push 
-
-publish: && push
-    rm -rf $PAGE/covid
-    cp -rf out $PAGE/covid
 
 @reset:
     rm -rf out
