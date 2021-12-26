@@ -6,11 +6,11 @@ alias c := commit
 default: publish commit
     
 publish:
-    cd $PAGE git rm -r covid # Remove everything to ger rid of unused media
-    cp -rf out $PAGE/covid
+    cd $PAGE git rm -rf covid # Remove everything to ger rid of unused media
+    cp -rf covid $PAGE
     cd $PAGE && git add covid
 
-    -cd $PAGE && git commit -am "Updated covid"
+    cd $PAGE && git commit -am "Updated covid"
     cd $PAGE && git push 
 
 @reset:
