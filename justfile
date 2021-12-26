@@ -21,6 +21,6 @@ publish:
     open out/index.html -a Safari
 
 @commit:
-    git rm -r --cached "Writeup.ulysses" # Remove everything to ger rid of unused media
+    git rm -r --cached "Writeup.ulysses" #! Remove everything to ger rid of unused media
     git add "Writeup.ulysses"
     git commit -am "Ulysses doc update"
