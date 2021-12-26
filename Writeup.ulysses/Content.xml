@@ -19,8 +19,8 @@
 	<tag definition="filename" pattern="@:"></tag>
 	<tag definition="code" startPattern="`" endPattern="`"></tag>
 	<tag definition="delete" startPattern="||" endPattern="||"></tag>
-	<tag definition="emph" startPattern="_" endPattern="_"></tag>
 	<tag definition="emph" startPattern="*" endPattern="*"></tag>
+	<tag definition="emph" startPattern="_" endPattern="_"></tag>
 	<tag definition="inlineComment" startPattern="++" endPattern="++"></tag>
 	<tag definition="inlineNative" startPattern="~" endPattern="~"></tag>
 	<tag definition="mark" startPattern="::" endPattern="::"></tag>
@@ -86,7 +86,6 @@
 </string></attribute>Figure 1: Daily people registration over time</element></p>
 <p></p>
 <p></p>
-<p>Hola</p>
 <p></p>
 <p><tags><tag kind="heading2">##</tag></tags>References</p>
 <p></p>
