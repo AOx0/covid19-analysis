@@ -18,7 +18,7 @@ publish:
     mkdir out
 
 @open:
-    open out/index.html -a Safari
+    open covid/index.html -a Safari
 
 @commit:
     git rm -r --cached "Writeup.ulysses" #! Remove everything to ger rid of unused media
