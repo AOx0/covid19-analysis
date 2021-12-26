@@ -10,7 +10,7 @@ publish:
     cp -rf out $PAGE/covid
     cd $PAGE && git add covid
 
-    cd $PAGE && git commit -am "Updated covid"
+    -cd $PAGE && git commit -am "Updated covid"
     cd $PAGE && git push 
 
 @reset:
