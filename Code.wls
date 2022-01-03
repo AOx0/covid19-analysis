@@ -26,7 +26,7 @@ Dplot[list_, opt : OptionsPattern[{Dplot, Plot}]] :=
 Protect[Dplot, YRange, XRange];
 
 RenderP := {e, name} |-> Module[{},
-	Export["/Users/alejandro/out/"<>name<>".pdf", e];
+	Export["/Users/alejandro/out/"<>name<>".pdf", e, "PDF", "AllowRasterization"->False];
 	SystemOpen["/Users/alejandro/out/"<>name<>".pdf"];
 ];
 
@@ -37,13 +37,15 @@ Protect[RenderP];
 (*Custom functions to plot pies easier*)
 
 
-PieFromTotal := {total, values} |-> Module[{p, j, o},
+Unprotect[PieFromTotal];
+ClearAll[PieFromTotal];
+PieFromTotal[total_, values_, legends_, opt: OptionsPattern[{PieChart}]] := Module[{p, j, o},
 	p = {ToString@(N[(total-Sum[k, {k, values}])/total*100])<>"%"};
 	For[j = 1, j <= Length@values, j++,
 		p = AppendTo[p,  ToString@(N[values[[j]]/total*100])<>"%"]
 	];
 	
-	o = {total};
+	o = {total-Sum[k, {k, values}]};
 	For[j = 1, j <= Length@values, j++,
 		o = AppendTo[o, values[[j]]]
 	];
@@ -51,13 +53,18 @@ PieFromTotal := {total, values} |-> Module[{p, j, o},
 	PieChart[
 		{o}, 
 		ChartLabels-> Placed[p,  "VerticalCallout"], 
+		ChartLegends->Placed[legends, Below],
 		SectorSpacing->None,
-		ImageSize->Full,
 		ChartStyle->EdgeForm[None],
+		ImageSize->OptionValue[ImageSize],
 		ChartBaseStyle->EdgeForm[Dashed],
-		LabelStyle->Directive[20]
+		LabelStyle->Directive[20],
+		PlotRange->All,
+		SectorOrigin->OptionValue@SectorOrigin
 	]
 ]
+
+Protect[PieFromTotal];
 
 
 (* ::Text:: *)
@@ -146,3 +153,37 @@ RenderP[Show[Dplot@dates, Dplot[datesCovid, PlotStyle-> Darker@Red]], "TotalVSCo
 
 
 Show[Dplot@dates, Dplot[datesCovid, PlotStyle-> Darker@Red]]
+
+
+PerformForEach["~/Downloads/covid", <|
+	Pre -> ((
+		result = <||>;
+	)&),
+	Code -> ((
+		Do[
+			entity = Counts[Normal@#Data[Select[#"CLASIFICACION_FINAL" == 3 && #"ENTIDAD_UM" == en &], "FECHA_INGRESO"] ];
+			If [KeyExistsQ[result, en], result[en] = Merge[{result[en], entity}, Total], result[en] = entity];
+		,{en, 1, 32}]
+	)&),
+	Post -> ((
+	entity = <||>;
+	plots = {};
+	Do[
+		entity[en] = Flatten /@ List @@@ Normal @ result[en];
+		Do[entity[en][[n]][[1]] = FromDateString[entity[en][[n]][[1]]], {n, 1, Length[entity[en]]}];
+		plots = AppendTo[plots, Dplot[entity[en]]];
+	,{en, 1, 32}]
+	)&)
+|>];
+
+
+Sum[k, {k, Table[Sum[e[[2]], {e, entity[en]}], {en, 1, 32}]}]
+
+
+Table[Sum[e[[2]], {e, entity[en]}], {en, 1, 32}]
+
+
+RenderP[PieFromTotal[Sum[k, {k, Table[Sum[e[[2]], {e, entity[en]}], {en, 1, 32}]}],  Table[Sum[e[[2]], {e, entity[en]}], {en, 1, 32}], 
+{"Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Coahuila", "Colima", "Chiapas", "Chihuahua", "Ciudad de M\[EAcute]xico", "Durango", "Guanajuato", "Guerrero", "Hidalgo",
+"Jalisco", "Estado de M\[EAcute]xico", "Michiac\[AAcute]n", "Morelos", "Nayarit", "Nuevo Le\[OAcute]n", "Oaxaca", "Puebla", "Queretaro", "Quintana Roo", "San Luis Potos\[IAcute]", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas",
+"Tlaxcala", "Veracruz", "Yucat\[AAcute]n", "Zacatecas"}, ImageSize->Scaled[2],  SectorOrigin -> {{Pi/12, "Counterclockwise"}, 1}] , "TodosEstados"]

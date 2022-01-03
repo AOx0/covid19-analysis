@@ -154,7 +154,47 @@
 <p><tags><tag kind="heading6">######</tag></tags><element kind="annotation"><attribute identifier="text"><string xml:space="preserve">
 </string></attribute>Figure 4: Percent of confirmed cases per the total number of registrations over time</element></p>
 <p></p>
+<p>From this perspective, there appears to be two COVID19 waves instead of three as displayed at <element kind="strong" startTag="**" endTag="**">Figure 3</element>.</p>
 <p></p>
+<p><element kind="inlineNative" startTag="~" endTag="~">&lt;/br&gt;</element><element kind="strong" startTag="**" endTag="**">Cases per Administrative Divisions</element></p>
+<p></p>
+<p>With a similar approach to the method used to count all confirmed cases, but with an extra check to select from each one of the 32 entities of México, an association with 32 associations is gained at the end of <element kind="strong" startTag="**" endTag="**">Code</element> instead of a single result association. </p>
+<p></p>
+<p><tags><tag kind="codeblock">￼</tag></tags><attribute identifier="syntax">mathematica</attribute>PerformForEach["~/Downloads/covid", &lt;|</p>
+<p><tags><tag kind="codeblock">￼</tag></tags>	Pre -&gt; ((</p>
+<p><tags><tag kind="codeblock">￼</tag></tags>		result = &lt;||&gt;;</p>
+<p><tags><tag kind="codeblock">￼</tag></tags>	)&amp;),</p>
+<p><tags><tag kind="codeblock">￼</tag></tags>	Code -&gt; ((</p>
+<p><tags><tag kind="codeblock">￼</tag></tags>		Do[</p>
+<p><tags><tag kind="codeblock">￼</tag></tags>			entity = Counts[Normal@#Data[Select[#"CLASIFICACION_FINAL" == 3 &amp;&amp; #"ENTIDAD_UM" == en &amp;], "FECHA_INGRESO"] ];</p>
+<p><tags><tag kind="codeblock">￼</tag></tags>			If [KeyExistsQ[result, en], result[en] = Merge[{result[en], entity}, Total], result[en] = entity];</p>
+<p><tags><tag kind="codeblock">￼</tag></tags>		,{en, 1, 32}]</p>
+<p><tags><tag kind="codeblock">￼</tag></tags>	)&amp;),</p>
+<p><tags><tag kind="codeblock">￼</tag></tags>	Post -&gt; ((</p>
+<p><tags><tag kind="codeblock">￼</tag></tags>	entity = &lt;||&gt;;</p>
+<p><tags><tag kind="codeblock">￼</tag></tags>	plots = {};</p>
+<p><tags><tag kind="codeblock">￼</tag></tags>	Do[</p>
+<p><tags><tag kind="codeblock">￼</tag></tags>		entity[en] = Flatten /@ List @@@ Normal @ result[en];</p>
+<p><tags><tag kind="codeblock">￼</tag></tags>		Do[entity[en][[n]][[1]] = FromDateString[entity[en][[n]][[1]]], {n, 1, Length[entity[en]]}];</p>
+<p><tags><tag kind="codeblock">￼</tag></tags>		plots = AppendTo[plots, Dplot[entity[en]]];</p>
+<p><tags><tag kind="codeblock">￼</tag></tags>	,{en, 1, 32}]</p>
+<p><tags><tag kind="codeblock">￼</tag></tags>	)&amp;)</p>
+<p><tags><tag kind="codeblock">￼</tag></tags>|&gt;];</p>
+<p></p>
+<p>Then, a sum of all cases can be computed for each entity.</p>
+<p></p>
+<p><tags><tag kind="codeblock">￼</tag></tags><attribute identifier="syntax">mathematica</attribute>Table[Sum[e[[2]], {e, entity[en]}], {en, 1, 32}]</p>
+<p></p>
+<p>Returning:</p>
+<p><escape>\{</escape>37876, 83146, 57416, 23697, 97912, 32851, 21214, 71485, 949633, 48989, 198388, 75604, 60673, 162487, 229096, 72058, 48098, 34019,  206653, 79510, 123996, 99596, 58782, 106373, 72865, 99407, 144732, 103770, 26673, 119370, 75034, 41756<escape>\}</escape></p>
+<p></p>
+<p><element kind="image"><attribute identifier="image">a81b8d9a385349e9a99b4676a48755b3</attribute></element></p>
+<p><tags><tag kind="heading6">######</tag></tags><element kind="annotation"><attribute identifier="text"><string xml:space="preserve">
+</string></attribute>Figure 5: Pie chart of total confirmed cases per administrative division</element></p>
+<p></p>
+<p><element kind="image"><attribute identifier="image">6d64635f2cb049c29791c00f26f51a57</attribute></element></p>
+<p><tags><tag kind="heading6">######</tag></tags><element kind="annotation"><attribute identifier="text"><string xml:space="preserve">
+</string></attribute>Figure 6: Rectangle chart of total confirmed cases per administrative division</element></p>
 <p></p>
 <p><tags><tag kind="heading2">##</tag></tags>References</p>
 <p></p>
