@@ -12,4 +12,4 @@ Data was analyzed with **[Wolfram Mathematica](https://www.wolfram.com/mathemati
 
 
 
-The result can be viewed at **[https://aox0.github.io/p/covid/]( https://aox0.github.io/p/covid/)**
+The result can be viewed at **[https://aoxo.me/p/covid/]( https://aox0.github.io/p/covid/)**
