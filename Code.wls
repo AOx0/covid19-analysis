@@ -71,10 +71,10 @@ Protect[PieFromTotal];
 (*Custom fuctions and types definition for easier file manipulation:*)
 
 
-Unprotect[Post, Pre, Code, PerformForEach, StartF, EndF];
-ClearAll[Post, Pre, Code, PerformForEach, StartF, EndF];
+Unprotect[Pos, Pre, Code, PerformForEach, StartF, EndF];
+ClearAll[Pos, Pre, Code, PerformForEach, StartF, EndF];
 
-Post = Post; Pre = Pre; Code = Code; StartF = StartF; EndF = EndF;
+Pos = Pos; Pre = Pre; Code = Code; StartF = StartF; EndF = EndF;
 Options[PerformForEach] = {StartF -> 1, EndF -> Default};
 
 PerformForEach[p_, code_, OptionsPattern[]] := Module[{path = p, f, file, data, n, name, end, start},
@@ -90,10 +90,10 @@ PerformForEach[p_, code_, OptionsPattern[]] := Module[{path = p, f, file, data, 
 		file = path<>name<>ToString@f<>".csv";
 		If[KeyExistsQ[code, Code], code[Code][<|"Data" -> Import[file, {"CSV", "Dataset"}, "HeaderLines"->1], "File"-> f|>]];
 	], ProgressIndicator[f, {start, end+1}]];
-	If[KeyExistsQ[code, Post], code[Post][]];
+	If[KeyExistsQ[code, Pos], code[Pos][]];
 ];
 
-Protect[Post, Pre, Code, PerformForEach, StartF, EndF];
+Protect[Pos, Pre, Code, PerformForEach, StartF, EndF];
 
 
 PerformForEach["~/Downloads/covid", <|
@@ -104,7 +104,7 @@ PerformForEach["~/Downloads/covid", <|
 		dates = Counts[Normal@#Data[All, "FECHA_INGRESO"]];
 		result = Merge[{result, dates}, Total];
 	)&),
-	Post -> ((
+	Pos -> ((
 		dates = Flatten /@ List @@@ Normal @ result;
 		Do[dates[[n]][[1]] = FromDateString[dates[[n]][[1]]], {n, 1, Length[dates]}];
 		Print@Dplot[dates];
@@ -120,7 +120,7 @@ PerformForEach["~/Downloads/covid", <|
 		datesCovid = Counts[Normal@#Data[Select[#"CLASIFICACION_FINAL" == 3 &], "FECHA_INGRESO"] ];
 		result = Merge[{result, datesCovid}, Total];
 	)&),
-	Post -> ((
+	Pos -> ((
 		datesCovid = Flatten /@ List @@@ Normal @ result;
 		Do[datesCovid[[n]][[1]] = FromDateString[datesCovid[[n]][[1]]], {n, 1, Length[datesCovid]}];
 		Print@Dplot[datesCovid];
@@ -165,7 +165,7 @@ PerformForEach["~/Downloads/covid", <|
 			If [KeyExistsQ[result, en], result[en] = Merge[{result[en], entity}, Total], result[en] = entity];
 		,{en, 1, 32}]
 	)&),
-	Post -> ((
+	Pos -> ((
 	entity = <||>;
 	plots = {};
 	Do[

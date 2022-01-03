@@ -2,6 +2,7 @@ set dotenv-load := true
 alias r := reset
 alias o := open
 alias c := commit
+alias ca := commit_all
 
 default: publish commit
     
@@ -24,3 +25,6 @@ publish:
     git rm -r --cached "Writeup.ulysses" #! Remove everything to ger rid of unused media
     git add "Writeup.ulysses"
     git commit -am "Ulysses doc update"
+
+@commit_all msg:
+    git commit -am "{{msg}}"
