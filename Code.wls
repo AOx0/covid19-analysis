@@ -177,13 +177,11 @@ PerformForEach["~/Downloads/covid", <|
 |>];
 
 
-Sum[k, {k, Table[Sum[e[[2]], {e, entity[en]}], {en, 1, 32}]}]
+estados = {"Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Coahuila", "Colima", "Chiapas", "Chihuahua", "Ciudad de M\[EAcute]xico", "Durango", "Guanajuato", "Guerrero", "Hidalgo",
+"Jalisco", "Estado de M\[EAcute]xico", "Michoac\[AAcute]n", "Morelos", "Nayarit", "Nuevo Le\[OAcute]n", "Oaxaca", "Puebla", "Queretaro", "Quintana Roo", "San Luis Potos\[IAcute]", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas",
+"Tlaxcala", "Veracruz", "Yucat\[AAcute]n", "Zacatecas"};
+
+PieFromTotal[Sum[k, {k, Table[Sum[e[[2]], {e, entity[en]}], {en, 1, 32}]}],  Table[Sum[e[[2]], {e, entity[en]}], {en, 1, 32}], estados, ImageSize->Full,  SectorOrigin -> {{Pi/12, "Counterclockwise"}, 1}]
 
 
-Table[Sum[e[[2]], {e, entity[en]}], {en, 1, 32}]
-
-
-RenderP[PieFromTotal[Sum[k, {k, Table[Sum[e[[2]], {e, entity[en]}], {en, 1, 32}]}],  Table[Sum[e[[2]], {e, entity[en]}], {en, 1, 32}], 
-{"Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Coahuila", "Colima", "Chiapas", "Chihuahua", "Ciudad de M\[EAcute]xico", "Durango", "Guanajuato", "Guerrero", "Hidalgo",
-"Jalisco", "Estado de M\[EAcute]xico", "Michiac\[AAcute]n", "Morelos", "Nayarit", "Nuevo Le\[OAcute]n", "Oaxaca", "Puebla", "Queretaro", "Quintana Roo", "San Luis Potos\[IAcute]", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas",
-"Tlaxcala", "Veracruz", "Yucat\[AAcute]n", "Zacatecas"}, ImageSize->Scaled[2],  SectorOrigin -> {{Pi/12, "Counterclockwise"}, 1}] , "TodosEstados"]
+RenderP[RectangleChart[{Table[{10, Sum[e[[2]], {e, entity[en]}]}, {en, 1, 32}]}, ChartLabels-> Placed[estados, Above] , ImageSize->Scaled[2.3], LabelStyle->Directive[20]], "TodosEstadosRect"]
