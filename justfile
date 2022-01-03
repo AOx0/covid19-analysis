@@ -3,8 +3,10 @@ alias r := reset
 alias o := open
 alias c := commit
 alias ca := commit_all
+alias p := push
+alias cp := commit_push
 
-default: publish commit
+default: publish commit push
     
 publish:
     cd $PAGE git rm -rf covid #! Remove everything to ger rid of unused media
@@ -28,3 +30,9 @@ publish:
 
 @commit_all msg:
     git commit -am "{{msg}}"
+
+@push:
+    git push
+
+@commit_push msg: (commit_all msg) push
+    
