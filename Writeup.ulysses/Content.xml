@@ -19,8 +19,8 @@
 	<tag definition="filename" pattern="@:"></tag>
 	<tag definition="code" startPattern="`" endPattern="`"></tag>
 	<tag definition="delete" startPattern="||" endPattern="||"></tag>
-	<tag definition="emph" startPattern="*" endPattern="*"></tag>
 	<tag definition="emph" startPattern="_" endPattern="_"></tag>
+	<tag definition="emph" startPattern="*" endPattern="*"></tag>
 	<tag definition="inlineComment" startPattern="++" endPattern="++"></tag>
 	<tag definition="inlineNative" startPattern="~" endPattern="~"></tag>
 	<tag definition="mark" startPattern="::" endPattern="::"></tag>
@@ -85,7 +85,7 @@
 <p></p>
 <p>Finally, transform the association into a matrix of 2 columns and format the dates, for them to be Date objects instead of strings and be able to plot the matrix, and plot the data with the custom function <element kind="strong" startTag="**" endTag="**">Dplot</element>.</p>
 <p></p>
-<p><element kind="image"><attribute identifier="image">f4ebb9275cbc4560b92807d6587b340b</attribute></element></p>
+<p><element kind="image"><attribute identifier="image">b4f8133a13fe4087bd669eda31796a6b</attribute></element></p>
 <p><tags><tag kind="heading6">######</tag></tags><element kind="annotation"><attribute identifier="text"><string xml:space="preserve">
 </string></attribute>Figure 1: Daily people registration over time</element></p>
 <p></p>
@@ -108,7 +108,7 @@
 <p><tags><tag kind="codeblock">￼</tag></tags>	)&amp;)</p>
 <p><tags><tag kind="codeblock">￼</tag></tags>|&gt;];</p>
 <p></p>
-<p><element kind="image"><attribute identifier="image">7e528a8019a94b0bad78160f9fbc96f7</attribute></element></p>
+<p><element kind="image"><attribute identifier="image">3082ba59175049b8b02244a5789b6d70</attribute></element></p>
 <p><tags><tag kind="heading6">######</tag></tags><element kind="annotation"><attribute identifier="text"><string xml:space="preserve">
 </string></attribute>Figure 2: Confirmed COVID19 cases over time</element></p>
 <p></p>
@@ -118,7 +118,7 @@
 <p></p>
 <p><tags><tag kind="codeblock">￼</tag></tags><attribute identifier="syntax">mathematica</attribute>Show[Dplot@dates, Dplot[datesCovid, PlotStyle-&gt; Darker@Red]]</p>
 <p></p>
-<p><element kind="image"><attribute identifier="image">3f0200060d2d4b95904a26d2d30d51f1</attribute></element></p>
+<p><element kind="image"><attribute identifier="image">b22f773063774ce09bec622565df10a9</attribute></element></p>
 <p><tags><tag kind="heading6">######</tag></tags><element kind="annotation"><attribute identifier="text"><string xml:space="preserve">
 </string></attribute>Figure 3: Total attendance registration and confirmed cases per day over time</element></p>
 <p></p>
@@ -150,7 +150,7 @@
 <p></p>
 <p><tags><tag kind="codeblock">￼</tag></tags><attribute identifier="syntax">mathematica</attribute>Dplot[percentPerDate, Filling -&gt; Top, YRange-&gt;{0,100}]</p>
 <p></p>
-<p><element kind="image"><attribute identifier="image">a9559c0892ef454889ba76831a83a004</attribute></element></p>
+<p><element kind="image"><attribute identifier="image">7fe4b2a58c6c4ecfbe4ed12bde78ad43</attribute></element></p>
 <p><tags><tag kind="heading6">######</tag></tags><element kind="annotation"><attribute identifier="text"><string xml:space="preserve">
 </string></attribute>Figure 4: Percent of confirmed cases per the total number of registrations over time</element></p>
 <p></p>
@@ -188,11 +188,11 @@
 <p>Returning:</p>
 <p><escape>\{</escape>37876, 83146, 57416, 23697, 97912, 32851, 21214, 71485, 949633, 48989, 198388, 75604, 60673, 162487, 229096, 72058, 48098, 34019,  206653, 79510, 123996, 99596, 58782, 106373, 72865, 99407, 144732, 103770, 26673, 119370, 75034, 41756<escape>\}</escape></p>
 <p></p>
-<p><element kind="image"><attribute identifier="image">a81b8d9a385349e9a99b4676a48755b3</attribute></element></p>
+<p><element kind="image"><attribute identifier="image">3d83e733ae7d417597901fa2d66d6fba</attribute></element></p>
 <p><tags><tag kind="heading6">######</tag></tags><element kind="annotation"><attribute identifier="text"><string xml:space="preserve">
 </string></attribute>Figure 5: Pie chart of total confirmed cases per administrative division</element></p>
 <p></p>
-<p><element kind="image"><attribute identifier="image">6d64635f2cb049c29791c00f26f51a57</attribute></element></p>
+<p><element kind="image"><attribute identifier="image">c64d57d090864d25b25a4721f585ce54</attribute></element></p>
 <p><tags><tag kind="heading6">######</tag></tags><element kind="annotation"><attribute identifier="text"><string xml:space="preserve">
 </string></attribute>Figure 6: Rectangle chart of total confirmed cases per administrative division</element></p>
 <p></p>
