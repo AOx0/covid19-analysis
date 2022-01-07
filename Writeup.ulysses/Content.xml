@@ -48,7 +48,7 @@
 <p>The purpose, to strengthen my general analysis skills, practicing methods used to produce high-quality materials like this web page and the media displayed in it.</p>
 <p></p>
 <p><tags><tag kind="heading2">##</tag></tags>Regarding the data</p>
-<p>The CSV was uploaded by José Héctor Paredes Martínez, Epidemiological Notification and Registry Director of the Secretaría de Salud at Mexico’s government.</p>
+<p>The CSV<element kind="inlineNative" startTag="~" endTag="~">&lt;a href="#f1"&gt;\( ^1 \)&lt;/a&gt;</element>  was uploaded by José Héctor Paredes Martínez, Epidemiological Notification and Registry Director of the Secretaría de Salud at Mexico’s government.</p>
 <p>Composed of 12,133,530 lines, the database contains a variety of information like death dates, gender, whether intubation was required, nationality, and more input which help get an idea of the situation in México.</p>
 <p>I manipulated the material with <element kind="strong" startTag="**" endTag="**">Wolfram Mathematica</element> 13.0.0, fragmenting the rows with the rust crate, <element kind="strong" startTag="**" endTag="**">split-csv</element>, into 101 smaller documents for easier processing.</p>
 <p></p>
@@ -199,6 +199,6 @@
 <p></p>
 <p><tags><tag kind="heading2">##</tag></tags>References</p>
 <p></p>
-<p><tags><tag>	</tag></tags><element kind="inlineNative" startTag="~" endTag="~">\( \ \ \ \ \ \ \ \)</element> 1.- </p>
+<p><tags><tag>	</tag></tags><element kind="inlineNative" startTag="~" endTag="~">&lt;p id="f1"/&gt;\( \ \ \ \ \ \ \ \)</element> 1.- Martínez, J. (2020) <element kind="emph" startTag="*" endTag="*">”Información Referente a Casos Covid-19 En México”</element>. 2020-08-06. https://www.gob.mx/salud: Secretaría de Salud. Consulted from https://datos.gob.mx/busca/dataset/informacion-referente-a-casos-covid-19-en-mexico on December 16, 2021.</p>
 </string>
 </sheet>
