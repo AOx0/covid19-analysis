@@ -27,8 +27,11 @@ Protect[Dplot, YRange, XRange];
 
 RenderP := {e, name} |-> Module[{},
 	Export["/Users/alejandro/out/"<>name<>".pdf", e, "PDF", "AllowRasterization"->False];
-	SystemOpen["/Users/alejandro/out/"<>name<>".pdf"];
+	Run["open /Users/alejandro/out/"<>name<>".pdf -a Preview"];
+	Run["open /Users/alejandro/out/"<>name<>".pdf -a \"Affinity Designer\""];
 ];
+
+RGB := {r, g, b} |-> RGBColor[{r/255, g/255, b/255}];
 
 Protect[RenderP];
 
@@ -83,6 +86,7 @@ PerformForEach[p_, code_, OptionsPattern[]] := Module[{path = p, f, file, data, 
 	name = Last@StringSplit[path, "/"]<>"_";
 	path = If[Last@StringSplit[path, ""] == "/", path, path<>"/"];
 	end = OptionValue[EndF] /. Default -> n;
+	Print@end;
 	start = OptionValue[StartF];
 	
 	If[KeyExistsQ[code, Pre], code[Pre][]];
@@ -185,3 +189,83 @@ PieFromTotal[Sum[k, {k, Table[Sum[e[[2]], {e, entity[en]}], {en, 1, 32}]}],  Tab
 
 
 RenderP[RectangleChart[{Table[{10, Sum[e[[2]], {e, entity[en]}]}, {en, 1, 32}]}, ChartLabels-> Placed[estados, Above] , ImageSize->Scaled[2.3], LabelStyle->Directive[20]], "TodosEstadosRect"]
+
+
+PerformForEach["~/Downloads/covid", <|
+	Pre -> ((
+		result = <||>;
+		result2 = <||>;
+	)&),
+	Code -> ((
+		Do[
+			entity2 = #Data[Select[#"ENTIDAD_UM" == en &], {"FECHA_INGRESO", "CLASIFICACION_FINAL"}];
+			entity = Counts[Normal@entity2[Select[#"CLASIFICACION_FINAL" == 3 &], "FECHA_INGRESO"]];
+			entity2 = Counts[Normal@entity2[All, "FECHA_INGRESO"]];
+			
+			If [KeyExistsQ[result, en], result[en] = Merge[{result[en], entity}, Total], result[en] = entity];
+			If [KeyExistsQ[result2, en], result2[en] = Merge[{result2[en], entity2}, Total], result2[en] = entity2];
+		,{en, 1, 32}]
+	)&),
+	Pos -> ((
+		entity = <||>;
+		plots = {};
+		plots2 = {};
+		Do[
+			entity[en] = Flatten /@ List @@@ Normal @ result[en];
+			entity2[en] = Flatten /@ List @@@ Normal @ result2[en];
+		
+			Do[entity[en][[n]][[1]] = FromDateString[entity[en][[n]][[1]]], {n, 1, Length[entity[en]]}];
+			Do[entity2[en][[n]][[1]] = FromDateString[entity2[en][[n]][[1]]], {n, 1, Length[entity2[en]]}];
+		
+			plots = AppendTo[plots, Dplot[entity[en]]];
+			plots2 = AppendTo[plots2, Dplot[entity2[en]]];
+		,{en, 1, 32}]
+	)&)
+|>];
+
+
+confirmed := Sum[e[[2]], {e, entity[en]}];
+total := Sum[e[[2]], {e, entity2[en]}];
+blue := RGBColor[{113/255, 149/255, 199/255}]
+labels := ChartLabels-> Placed[estados, Before]
+style := {BarOrigin->Left, LabelStyle->Directive[20]}
+
+
+Show[{
+	RectangleChart[
+		{Table[{1, total }, {en, 1, 32}]},
+		labels,
+		style,
+		ChartStyle->blue
+	],
+	RectangleChart[
+		{Table[{1, confirmed }, {en, 1, 32}]},
+		style,
+		ChartStyle->Red
+	]
+},  ImageSize->Full]
+
+
+confirmed := Sum[e[[2]], {e, entity[en]}];
+total := Sum[e[[2]], {e, entity2[en]}];
+lblue := RGB[113, 149, 199]
+blue := RGB[150, 170, 199]
+labels := ChartLabels-> Placed[estados, Before]
+style := {BarOrigin->Left, LabelStyle->Directive[20]}
+
+RenderP[
+Show[{
+	RectangleChart[
+		{Table[{1, 100 }, {en, 1, 32}]},
+		labels,
+		style,
+		ChartStyle->blue
+	],
+	RectangleChart[
+		{Table[{1, confirmed/total * 100 }, {en, 1, 32}]},
+		style,
+		ChartStyle->lblue
+	]
+},  ImageSize->Full]
+
+,"TodosEstadosRectPercent"]
