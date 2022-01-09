@@ -266,6 +266,31 @@ Show[{
 		style,
 		ChartStyle->lblue
 	]
-},  ImageSize->Full]
+},  ImageSize->Scaled[2.3]]
 
 ,"TodosEstadosRectPercent"]
+
+
+Table[{en, confirmed/total * 100  }, {en, 1, 32}]
+
+
+sortedStates = SortBy[Table[{en, confirmed/total * 100}, {en, 1, 32}], ( #[[2]] &)]
+
+
+RenderP[
+
+Show[{
+RectangleChart[
+		{Table[{1, 100 }, {en, 1, 32}]},
+		ChartLabels -> Table[sortedStates[[en]][[1]] /. sortedStates[[en]][[1]] -> estados[[sortedStates[[en]][[1]]]], {en, 1, 32}],
+		style,
+		ChartStyle->blue
+	],
+RectangleChart[
+	{Table[{1, sortedStates[[en]][[2]]}, {en, 1, 32}]},
+	style,
+	ChartStyle->lblue
+]
+},  ImageSize->Scaled[2.3]]
+
+,"TodosEstadosRectPercentSorted"]
