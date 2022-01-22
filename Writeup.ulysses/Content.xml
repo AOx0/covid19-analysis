@@ -297,6 +297,9 @@
 </string></attribute>Figure 10: Percent of confirmed cases per state, sorted from greatest to lowest </element></p>
 <p></p>
 <p></p>
+<p><tags><tag kind="heading2">##</tag></tags>To sum</p>
+<p>Mathematica is a great software where we can easily analyze huge amounts of data and produce high-quality and very flexible and personalized representations of the data with friendly standard functions and very few lines of code. I could keep on generating more figures from the data like those displayed in <element kind="link"><attribute identifier="URL">https://coronavirus.gob.mx</attribute>https://coronavirus.gob.mx</element>, but I won’t because of time. Although, we do get an idea of how simple it is, at least with this example, to analyze, filter, sort, load and view big chunks of data.</p>
+<p></p>
 <p><tags><tag kind="heading2">##</tag></tags>References</p>
 <p></p>
 <p><tags><tag>	</tag></tags><element kind="inlineNative" startTag="~" endTag="~">&lt;p id="f1"/&gt;\( \ \ \ \ \ \ \ \)</element> 1.- Martínez, J. (2020-08-06) <element kind="emph" startTag="*" endTag="*">”Información Referente a Casos Covid-19 En México”</element>. https://www.gob.mx/salud: Secretaría de Salud. Retrieved from <element kind="link"><attribute identifier="URL">https://datos.gob.mx/busca/dataset/informacion-referente-a-casos-covid-19-en-mexico</attribute>https://datos.gob.mx/busca/dataset/informacion-referente-a-casos-covid-19-en-mexico</element> on December 16, 2021.</p>
