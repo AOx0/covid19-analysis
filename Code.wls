@@ -226,10 +226,13 @@ PerformForEach["~/Downloads/covid", <|
 
 confirmed := Sum[e[[2]], {e, entity[en]}];
 total := Sum[e[[2]], {e, entity2[en]}];
-blue := RGBColor[{113/255, 149/255, 199/255}]
-labels := ChartLabels-> Placed[estados, Before]
-style := {BarOrigin->Left, LabelStyle->Directive[20]}
+blue := RGBColor[{113/255, 149/255, 199/255}];
+labels := ChartLabels-> Placed[estados, Before];
+style := {BarOrigin->Left, LabelStyle->Directive[20]};
 
+estados = {"Aguascalientes", "Baja California", "Baja California Sur", "Campeche", "Coahuila", "Colima", "Chiapas", "Chihuahua", "Ciudad de M\[EAcute]xico", "Durango", "Guanajuato", "Guerrero", "Hidalgo",
+"Jalisco", "Estado de M\[EAcute]xico", "Michoac\[AAcute]n", "Morelos", "Nayarit", "Nuevo Le\[OAcute]n", "Oaxaca", "Puebla", "Queretaro", "Quintana Roo", "San Luis Potos\[IAcute]", "Sinaloa", "Sonora", "Tabasco", "Tamaulipas",
+"Tlaxcala", "Veracruz", "Yucat\[AAcute]n", "Zacatecas"};
 
 Show[{
 	RectangleChart[
@@ -244,6 +247,7 @@ Show[{
 		ChartStyle->Red
 	]
 },  ImageSize->Full]
+
 
 
 confirmed := Sum[e[[2]], {e, entity[en]}];
@@ -294,3 +298,6 @@ RectangleChart[
 },  ImageSize->Scaled[2.3]]
 
 ,"TodosEstadosRectPercentSorted"]
+
+
+150000 * 1.1 - 150000

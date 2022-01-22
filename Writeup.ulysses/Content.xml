@@ -19,8 +19,8 @@
 	<tag definition="filename" pattern="@:"></tag>
 	<tag definition="code" startPattern="`" endPattern="`"></tag>
 	<tag definition="delete" startPattern="||" endPattern="||"></tag>
-	<tag definition="emph" startPattern="_" endPattern="_"></tag>
 	<tag definition="emph" startPattern="*" endPattern="*"></tag>
+	<tag definition="emph" startPattern="_" endPattern="_"></tag>
 	<tag definition="inlineComment" startPattern="++" endPattern="++"></tag>
 	<tag definition="inlineNative" startPattern="~" endPattern="~"></tag>
 	<tag definition="mark" startPattern="::" endPattern="::"></tag>
@@ -50,15 +50,15 @@
 <p>Seven minutes read.</p>
 <p></p>
 <p><tags><tag kind="heading2">##</tag></tags>Regarding the data</p>
-<p>The CSV<element kind="inlineNative" startTag="~" endTag="~">&lt;a href="#f1"&gt;\( ^1 \)&lt;/a&gt;</element>  was uploaded by José Héctor Paredes Martínez, Epidemiological Notification and Registry Director of the Secretaría de Salud at Mexico’s government.</p>
+<p>The CSV<element kind="inlineNative" startTag="~" endTag="~">&lt;a href="#f1"&gt;\( ^1 \)&lt;/a&gt;</element> was uploaded by José Héctor Paredes Martínez, Epidemiological Notification and Registry Director of the Secretaría de Salud at Mexico’s government.</p>
 <p>Composed of 12,133,530 lines, the database contains a variety of information like death dates, gender, whether intubation was required, nationality, and more input which help get an idea of the situation in México.</p>
 <p>I manipulated the material with <element kind="strong" startTag="**" endTag="**">Wolfram Mathematica</element> 13.0.0, fragmenting the rows with the rust crate, <element kind="strong" startTag="**" endTag="**">split-csv</element>, into 101 smaller documents for easier processing.</p>
 <p></p>
-<p>It’s necessary to divide the 2 GB single archive since trying to import all 12 million registers at once into a dataset fails after more than 30 minutes because of massive virtual memory space required. By splitting the contents, I gain speed and flexibility when coding due to low loading times and memory usage per file.</p>
+<p>It’s necessary to divide the 2 GB single archive, since trying to import all 12 million registers at once into a dataset fails after more than 30 minutes because of massive virtual memory space required. By splitting the contents, I gain speed and flexibility when coding due to low loading times and memory usage per file.</p>
 <p></p>
 <p><tags><tag kind="heading2">##</tag></tags>Counting</p>
 <p></p>
-<p>This first section visualizes basic information, counting the number of people that full fills a condition.</p>
+<p>This first section visualizes basic information, counting the number of people that fulfills a condition.</p>
 <p></p>
 <p><element kind="inlineNative" startTag="~" endTag="~">&lt;/br&gt;</element><element kind="strong" startTag="**" endTag="**">All-time attendants</element></p>
 <p></p>
@@ -131,7 +131,7 @@
 <p></p>
 <p><element kind="inlineNative" startTag="~" endTag="~">&lt;/br&gt;</element><element kind="strong" startTag="**" endTag="**">COVID-19 confirmed percent by day over time</element></p>
 <p></p>
-<p>To accomplish this, more code is needed. Since the arrays extracted from the dataset are in disorder, it’s necessary to sort them by date, like DateListPlot does. Then prepend zero values to the collection for both to have the same length, and late divide each element of the raw total established cases by the complete number of people.</p>
+<p>To accomplish this, more code is needed. Since the arrays extracted from the dataset are disordered, it’s necessary to sort them by date, like DateListPlot does. Then prepend zero values to the collection for both to have the same length, and late divide each element of the raw total established cases by the complete number of people.</p>
 <p></p>
 <p><tags><tag kind="codeblock">￼</tag></tags><attribute identifier="syntax">mathematica</attribute>rawdatesqc = {};</p>
 <p><tags><tag kind="codeblock">￼</tag></tags>Do[AppendTo[rawdatesqc, e[[2]]],  {e, SortBy[datesCovid, AbsoluteTime[#[[1]]] &amp;]}];</p>
@@ -157,7 +157,7 @@
 <p><tags><tag kind="heading6">######</tag></tags><element kind="annotation"><attribute identifier="text"><string xml:space="preserve">
 </string></attribute>Figure 4: Percent of confirmed cases per number of registrations over time</element></p>
 <p></p>
-<p>From this perspective, there appears to be two COVID-19 waves instead of three as displayed at <element kind="strong" startTag="**" endTag="**">Figure 3</element>.</p>
+<p>From this perspective, there appears to be two COVID-19 waves instead of three as displayed in <element kind="strong" startTag="**" endTag="**">Figure 3</element>.</p>
 <p></p>
 <p><element kind="inlineNative" startTag="~" endTag="~">&lt;/br&gt;</element><element kind="strong" startTag="**" endTag="**">Cases per Administrative Divisions</element></p>
 <p></p>
@@ -189,7 +189,7 @@
 <p><tags><tag kind="codeblock">￼</tag></tags><attribute identifier="syntax">mathematica</attribute>Table[Sum[e[[2]], {e, entity[en]}], {en, 1, 32}]</p>
 <p></p>
 <p>Returning:</p>
-<p><escape>\{</escape>37876, 83146, 57416, 23697, 97912, 32851, 21214, 71485, 949633, 48989, 198388, 75604, 60673, 162487, 229096, 72058, 48098, 34019,  206653, 79510, 123996, 99596, 58782, 106373, 72865, 99407, 144732, 103770, 26673, 119370, 75034, 41756<escape>\}</escape></p>
+<p><escape>\{</escape>37876, 83146, 57416, 23697, 97912, 32851, 21214, 71485, 949633, 48989, 198388, 75604, 60673, 162487, 229096, 72058, 48098, 34019, 206653, 79510, 123996, 99596, 58782, 106373, 72865, 99407, 144732, 103770, 26673, 119370, 75034, 41756<escape>\}</escape></p>
 <p></p>
 <p>Result which can be utilized to generate various graphics. For example, employing the code within <element kind="strong" startTag="**" endTag="**">Figure 5</element>, which uses a custom function, <element kind="strong" startTag="**" endTag="**"> PieFromTotal</element>, whose prototype looks:</p>
 <p></p>
@@ -271,25 +271,31 @@
 <p><tags><tag kind="heading6">######</tag></tags><element kind="annotation"><attribute identifier="text"><string xml:space="preserve">
 </string></attribute>Figure 8: Total and confirmed cases per state</element></p>
 <p></p>
-<p>The <element kind="strong" startTag="**" endTag="**">Figure 9</element> was generated by a very similar code.  From the perspective of the chart, according to the data, Mexico City is not the state with the worst ratio, it is Oaxaca is.</p>
+<p>A very similar code generated <element kind="strong" startTag="**" endTag="**">Figure 9</element>.  From the perspective of the chart, according to the data, Mexico City is not the state with the worst ratio, it is Oaxaca is.</p>
 <p></p>
 <p><element kind="image"><attribute identifier="image">33933287a3cb455cbdace1b97cd8bd83</attribute></element></p>
 <p><tags><tag kind="heading6">######</tag></tags><element kind="annotation"><attribute identifier="text"><string xml:space="preserve">
 </string></attribute>Figure 9: Percent of confirmed cases per state</element></p>
 <p></p>
-<p>The ratio probably does not display the real situation, keep in mind that this data depends on the number of people that did visit a Covid Station, and there’s a lot of people that, even though they got symptoms, don’t go to the medic nor to attention units, as shown in a report from the México’s government, where it’s indicated that the optimal hospital occupancy percentage is 90% but the average of the county is approximately 76%, with places like Campeche with only 56.4%.</p>
+<p>The ratio probably does not display the real situation.  Keep in mind that this data depends on the number of people that did visit a COVID-19 Stations, there are people that, even though they got symptoms, don’t go to the medic nor to attention units. As shown in a report from the México’s government, where it’s indicated that the optimal occupancy percentage is 90%, but the average of the county is approximately 76%, with places like Campeche with only 56.4%.  I indeed do know many people who do not attend to health centers. </p>
 <p></p>
 <p><tags><tag kind="blockquote">&gt; </tag></tags>In general, a value between 85% and 90% is identified as the optimal level of the indicator.</p>
 <p><tags><tag kind="blockquote">&gt; </tag></tags>In 2014, the national occupancy percentage was 75.8% (…). The result obtained is close to 10 percentage points below the expected level.</p>
-<p><tags><tag kind="blockquote">&gt; </tag></tags>(Informe sobre la Salud de los Mexicanos,  2016, p. 106)<element kind="inlineNative" startTag="~" endTag="~">&lt;a href="#f2"&gt;\( ^2 \)&lt;/a&gt;</element></p>
+<p><tags><tag kind="blockquote">&gt; </tag></tags>(Informe sobre la Salud de los Mexicanos, 2016, p. 106)<element kind="inlineNative" startTag="~" endTag="~">&lt;a href="#f2"&gt;\( ^2 \)&lt;/a&gt;</element></p>
 <p></p>
-<p>Whether people attend to hospitals or not is out the scope of this writeup. </p>
+<p>Whether people attend to hospitals or not is out of the scope of this writeup.</p>
 <p></p>
 <p><element kind="inlineNative" startTag="~" endTag="~">&lt;/br&gt;</element><element kind="strong" startTag="**" endTag="**"> Sorting the percent of confirmed cases per state</element></p>
 <p></p>
+<p>Next, let’s sort the charts in <element kind="strong" startTag="**" endTag="**">Figure 9</element> with the following code:</p>
+<p><tags><tag kind="codeblock">￼</tag></tags><attribute identifier="syntax">mathematica</attribute>sortedStates = SortBy[Table[{en, confirmed/total * 100}, {en, 1, 32}], ( #[[2]] &amp;)]</p>
+<p></p>
+<p>In which we specify <element kind="code" startTag="`" endTag="`">( #[[2]] &amp;) </element>, hence, sort the matrix with the value in the second index of each list in the matrix.</p>
+<p></p>
 <p><element kind="image"><attribute identifier="image">4357137251b0410bbd5c0b7c1ae404ff</attribute></element></p>
 <p><tags><tag kind="heading6">######</tag></tags><element kind="annotation"><attribute identifier="text"><string xml:space="preserve">
-</string></attribute>Figure 10: Percent of confirmed cases per state sorted from greatest to lowest </element></p>
+</string></attribute>Figure 10: Percent of confirmed cases per state, sorted from greatest to lowest </element></p>
+<p></p>
 <p></p>
 <p><tags><tag kind="heading2">##</tag></tags>References</p>
 <p></p>
